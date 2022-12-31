@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -65,26 +64,23 @@ public class EmployeeController {
 
     @GetMapping("/findemployeebyid/{empId}")
     public String findEmployeeById(@PathVariable int empId){
-        // Using this we can target specific primary key ID
-        // Optional is used to avoid null pointer exception
-        // 1st approach without cache
-        Optional<Employee> employee = employeeRepository.findById(empId);
+          Optional<Employee> employee = employeeRepository.findById(empId);
         if (employee.isPresent())
             // Here ".get()" method is use to get specific output, its optional
             return employee.get().toString();
         else
             return "Employee with id : " + empId + " is not available ! ! !";
 
-        // 2nd approach with cache
-        /*Employee employee = CacheManager.cache.get(empId);
-        if (employee != null)
-            return employee.toString();
-        else
-            return "Employee with id : " + empId + " is not available ! ! !";*/
     }
 
     @GetMapping("/highestsalaryemployee")
     public List<Employee> highestSalaryEmployee(){
+
+        return employeeRepository.getHighestSalaryEmployee();
+    }
+
+    @GetMapping("/lowestsalaryemployee")
+    public List<Employee> lowestSalaryEmployee(){
 
         return employeeRepository.getHighestSalaryEmployee();
     }

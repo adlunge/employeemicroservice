@@ -9,7 +9,7 @@ import java.util.List;
 //@Component    Uncomment this to enable cache
 public class CacheManager {
 
-    /*@Autowired
+    @Autowired
     EmployeeRepository employeeRepository;
     public static HashMap<Integer, Employee> cache = new HashMap<>();
 
@@ -19,5 +19,5 @@ public class CacheManager {
         List<Employee> employeeList = employeeRepository.findAll();
         employeeList.forEach(employee -> cache.put(employee.getEmpId(),employee));
         System.out.println("Cache loading ended . . .");
-    }*/
+    }
 }
